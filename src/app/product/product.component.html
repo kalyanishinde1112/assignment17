@@ -1,0 +1,36 @@
+<div class="flex justify-content-between">
+<h2>products</h2>
+<p-button label="add product" (click)="showAddModal()"></p-button>
+</div>
+
+<div class="card">
+    <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+
+                <th>Image</th>
+                <th>Edit</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{product.price}}</td>
+                <td><img src="{{ product.image }}" height="20%" width="10%"></td>
+                <td><button p-Button icon="pi pi-pencil" class="btn btn-primary
+                     mr-2 "
+                    style="color: green" 
+                 (click)="showeditProduct(product)"></button>Edit</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<add-edit-product [displayAddModal]="displayAddModal" (clickClose)="hideAddModal($event)" (dataTosend)="reciveddata($event)"
+ [isSlectedData]="isSlectedData"></add-edit-product>
+ <!-- <app-chart [data]="products"></app-chart> -->

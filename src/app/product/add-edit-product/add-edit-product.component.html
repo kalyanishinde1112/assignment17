@@ -1,0 +1,39 @@
+<p-dialog header="{{modalType}} Product" [(visible)]="displayAddModal" [modal]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false"
+    [resizable]="false" (onHide)="closeModal()">
+    <form [formGroup]="productForm">
+        <div class="field">
+            <label for="title" class="block">Title</label>
+            <input type="text" pInputText id="title" formControlName="title" />
+            <small class="p-error-block"
+                *ngIf="productForm.controls['title'].invalid && productForm.controls['title'].dirty">field is
+                required</small>
+        </div>
+        <div class="field">
+            <label for="description" class="block">Description</label>
+            <textarea rows="5" cols="30" pInputTextarea id="description" formControlName="description">
+</textarea>
+        </div>
+        <div class="field">
+            <label for="price" class="block">Price</label>
+            <p-inputNumber id="price" formControlName="price" /> 
+        </div>
+        <div class="field">
+            <label for="category" class="block">Category</label>
+            <input type="text" pInputText id="Category" formControlName="category" />
+            <small class="p-error-block"
+                *ngIf="productForm.controls['category'].invalid && productForm.controls['category'].dirty">field is
+                required</small>
+        </div>
+        <div class="field">
+            <label for="image" class="block">Image</label>
+            <input type="text" pInputText id="image" formControlName="image" />
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text">
+
+        </p-button>
+        <p-button (click)="addProduct()" [disabled]="productForm.invalid" label="{{modalType}}"></p-button>
+    </ng-template>
+</p-dialog>
